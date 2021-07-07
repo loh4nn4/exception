@@ -38,17 +38,14 @@ public class ProgramReservation { //solução 1 - muito ruim
 		System.out.print("Check-out date (dd/MM/yyyy): ");
 		checkout = sdf.parse(scanner.next());
 		
-		Date now = new Date();
-		if(checkin.before(now) || checkout.before(now)) {
-			System.out.println("Reservation dates for update must be future dates.");
-		}
-		else if(!checkout.after(checkin)) {
-			System.out.println("Error in reservation: Check-out date must be after check-in date");
+		String error = reservation.updateDate(checkin, checkout);
+		if(error != null) {
+			System.out.print("Error in reservatio: "+error);
 		}
 		else {
 			System.out.println("Reservation: "+reservation);
-			reservation.updateDate(checkin, checkout);
 		}
+		
 	}
 		
 		
